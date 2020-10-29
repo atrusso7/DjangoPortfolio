@@ -1,0 +1,124 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Anthony Russo</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+  </head>
+  <body>
+    <header>
+</header>
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Anthony Russo</h1>
+      <p class="lead text-muted">{{ bio.first }}</p>
+      <img src="{{ bio_pic.first.image.url }}"height=300 style='padding: 10px; clip-path: circle(120px at center);'>
+      <p>
+        <a href="mailto:anthony.russo.7@outlook.com" class="btn btn-primary my-2">Email me</a>
+      </p>
+    </div>
+    <div class="container">
+        <h2>Certifications</h2>
+        {% autoescape off %}
+        {% for b in certs.all %}
+            {{ b.cert_badge }}
+        {% endfor %}
+        {% endautoescape %}
+        <ul class="list-group list-group-horizontal">
+        </ul>
+    </div>
+    <div class="container" style='padding-top: 10px;'>
+        <h2>Education</h2>
+        <ul class="list-group list-group-horizontal">
+        {% for e in education.all %}
+            <li class="list-group-item">{{ e.degree }}<br><br><strong>{{ e.school }}</strong></li>
+        {% endfor %}
+        </ul>
+    </div>
+  <div class="album py-5 bg-light">
+    <div class="container" style='padding-bottom: 25px;'>
+      <h2>Professional Experience</h2>
+    </div>
+    <div class="container text-left">
+      <div class="row">
+        {% for e in jobs %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src="{{ e.image.url }}">
+            <div class="card-body">
+                <h3>{{ e.job_title }}</h3>
+                <p class="card-text">{{ e.summary }}</p>
+                {% comment %} <p class="card-text">
+                {% for highlights in e.highlights_set.all %}
+                        <ul>
+                            <li>{{ highlights }}</li>
+                        </ul>
+                    {% endfor %}
+                </p> {% endcomment %}
+                <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">{{ e.start_date }} - 
+                {% if e.current_job is True %}
+                    Present
+                {% else %}
+                    {{ e.end_date }}
+                {% endif %}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  </section>
+
+</main>
+
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+  </div>
+</footer>
+<script src="{% static 'jquery-3.5.1.min.js' %}"> </script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'popper.min.js' %}"></script
+</html>
